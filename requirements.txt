@@ -1,0 +1,7 @@
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Jinja2==3.0.1
+SQLAlchemy==1.4.17
+toml==0.10.2
+urllib3==1.25.11
+WTForms==2.3.3
