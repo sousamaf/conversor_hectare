@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash, request
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
+from conversor import Conversor
 
 # App config.
 DEBUG = True
@@ -17,14 +18,15 @@ class ReusableForm(Form):
         print(form.errors)
         if request.method == 'POST':
             area=request.form['area']
-            print("Área: {}", area)
+            conv = Conversor()
+            mensagem = conv.converter(area)
+            print("Área: {}", mensagem)
     
         if form.validate():
-        # Save the comment here.
-
             flash('Medida informada: ' + area)
+            flash(mensagem)
         else:
-            flash('Error: All the form fields are required.')
+            flash('Atenção: informe um valor para ser convertido.')
     
         return render_template('conversor.html', form=form)
 
