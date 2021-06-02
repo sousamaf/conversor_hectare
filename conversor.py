@@ -1,7 +1,8 @@
 import re
 class Conversor:
     def __init__(self):
-        self.re_unidade_medida = "(?:al|alqs|alqueire|alqueires|ac|acre|acres|milesimo|milésimo|milesimos|milésimos|lt|lts|litro|litros|milha|milhas|milha2|milha quadrada|milhas quadradas|decimo milesimo|décimo milésimo|decimos milesimos|décimos milésimos|decimo milesimos|décimo milésimos|selamim|salamim|celamim)"
+        self.re_unidade_medida = "(?:ha|hectare|hectares|al|alqs|alqueire|alqueires|ac|acre|acres|milesimo|milésimo|milesimos|milésimos|lt|lts|litro|litros|milha|milhas|milha2|milha quadrada|milhas quadradas|decimo milesimo|décimo milésimo|decimos milesimos|décimos milésimos|decimo milesimos|décimo milésimos|selamim|salamim|celamim)"
+        self.re_unidade_hectare = "(?:ha|hectare|hectares)"
         self.re_unidade_acre = "(?:ac|acre|acres)"
         self.re_unidade_alqueire = "(?:al|alqs|alqueire|alqueires)"
         self.re_unidade_litro = "(?:lt|lts|litro|litros)"
@@ -20,6 +21,9 @@ class Conversor:
     def devolver_calculo(self, unidade):
         if len(re.findall(self.re_unidade_acre, unidade)) > 0:
             return lambda a : a * 0.407
+
+        if len(re.findall(self.re_unidade_hectare, unidade)) > 0:
+            return lambda a : a
 
         if len(re.findall(self.re_unidade_salamim, unidade)) > 0:
             return lambda a : a * 0.15125
